@@ -1,7 +1,7 @@
 
 In the context of Node.js, spawn and fork are both methods provided by the child_process module, but they are used for slightly different purposes.
 
-#spawn:
+# spawn:
 The spawn method is used to launch a new process in Node.js. It is suitable for running non-Node processes or other command-line programs. It returns a ChildProcess object that allows you to interact with the spawned process.
 
 Example using spawn:
@@ -26,7 +26,7 @@ childProcess.on('close', (code) => {
 ```
 In this example, the spawn method is used to execute the ls -l command, and the output is captured through event listeners.
 
-#fork:
+# fork:
 The fork method is a special case of spawn specifically designed for creating child processes running Node.js scripts. It is used to run separate Node.js processes as child processes. Each forked process gets its own instance of the V8 JavaScript engine.
 
 Example using fork:
