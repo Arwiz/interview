@@ -1,13 +1,13 @@
 
 In the context of Node.js, spawn and fork are both methods provided by the child_process module, but they are used for slightly different purposes.
 
-spawn:
+#spawn:
 The spawn method is used to launch a new process in Node.js. It is suitable for running non-Node processes or other command-line programs. It returns a ChildProcess object that allows you to interact with the spawned process.
 
 Example using spawn:
 
 javascript
-Copy code
+```
 const { spawn } = require('child_process');
 
 const childProcess = spawn('ls', ['-l']);
@@ -23,15 +23,17 @@ childProcess.stderr.on('data', (data) => {
 childProcess.on('close', (code) => {
   console.log(`Child process exited with code ${code}`);
 });
+```
 In this example, the spawn method is used to execute the ls -l command, and the output is captured through event listeners.
 
-fork:
+#fork:
 The fork method is a special case of spawn specifically designed for creating child processes running Node.js scripts. It is used to run separate Node.js processes as child processes. Each forked process gets its own instance of the V8 JavaScript engine.
 
 Example using fork:
 
 javascript
-Copy code
+
+```
 const { fork } = require('child_process');
 
 const childProcess = fork('child.js');
@@ -41,6 +43,10 @@ childProcess.on('message', (message) => {
 });
 
 childProcess.send('Hello from the parent process!');
+
+
+```
+
 In this example, the fork method is used to run a separate Node.js script (child.js) as a child process. The parent process communicates with the child process using send and message events.
 
 Key Differences:
@@ -78,7 +84,8 @@ Well-suited for scenarios where the work can be performed independently in separ
 Example:
 
 javascript
-Copy code
+
+```
 const { spawn } = require('child_process');
 
 const childProcess = spawn('ls', ['-l']);
@@ -90,6 +97,10 @@ childProcess.stdout.on('data', (data) => {
 childProcess.on('close', (code) => {
   console.log(`Child process exited with code ${code}`);
 });
+
+
+```
+
 Worker Threads:
 Purpose:
 
@@ -106,7 +117,8 @@ Suitable for scenarios where parallel execution within a single Node.js process 
 Example:
 
 javascript
-Copy code
+
+```
 const { Worker } = require('worker_threads');
 
 const worker = new Worker(`
@@ -122,6 +134,9 @@ const worker = new Worker(`
 worker.on('message', (message) => {
   console.log(`Message from worker thread: ${message}`);
 });
+
+```
+
 Choosing Between Child Processes and Worker Threads:
 Task Nature:
 
